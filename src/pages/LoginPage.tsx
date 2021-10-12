@@ -64,7 +64,12 @@ const LoginPage: React.FC = () => {
         </Button>
       </Form>
       <Margin marginTop={16} />
-      <Typography role="button" onClick={() => history.push("/reset-password")}>
+      <Typography
+        role="button"
+        fontSize="0.8rem"
+        color="gray60"
+        onClick={() => history.push("/reset-password")}
+      >
         비밀번호 재설정
       </Typography>
     </Layout>
