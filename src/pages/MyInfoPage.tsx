@@ -45,7 +45,7 @@ const MyInfoPage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">회원 정보 조회 페이지</Typography>
+      <Typography fontSize="1.5rem">회원 정보 조회 </Typography>
       <Margin marginTop={24} />
       <Card>
         {user ? (

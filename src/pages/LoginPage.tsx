@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">로그인 페이지</Typography>
+      <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
         <TextField

@@ -46,9 +46,9 @@ const ChangePasswordPage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">비밀번호 재설정 페이지</Typography>
+      <Typography fontSize="1.5rem">비밀번호 재설정 </Typography>
       <Margin marginTop={24} />
-      <Typography>비밀번호 변경 페이지</Typography>
+      <Typography>비밀번호 변경 </Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
         <TextField
@@ -69,7 +69,7 @@ const ChangePasswordPage: React.FC = () => {
         </Button>
         <Margin marginTop={2} />
         <Button type="button" onClick={() => history.push("/")}>
-          로그인 페이지로 이동
+          로그인 로 이동
         </Button>
       </Form>
     </Layout>
