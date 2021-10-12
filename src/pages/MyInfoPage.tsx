@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import User from "entities/User";
 import { Button, Typography, Margin, Layout, Card } from "components";
-import useAuth from "hooks/useAuth";
+import { useAuth } from "hooks";
 import axios from "axios";
 
 const Profile = styled.img`

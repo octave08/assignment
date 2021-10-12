@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
-import useResetPassword from "hooks/useResetPassword";
+import { useResetPassword } from "hooks";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
-import useAuth from "hooks/useAuth";
+import { useAuth } from "hooks";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
