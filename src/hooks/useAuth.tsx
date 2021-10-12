@@ -60,7 +60,7 @@ const useAuth = (): {
     }
 
     try {
-      const { data } = await axios({
+      await axios({
         method: "POST",
         url: "/api/logout",
         headers: {
@@ -70,8 +70,9 @@ const useAuth = (): {
         },
       });
 
-      const lastConnectedAt = _.get(data, "lastConnectedAt");
-      console.log(lastConnectedAt);
+      setAuth({
+        accessToken: "",
+      });
     } catch (e) {
       console.log(e);
     }

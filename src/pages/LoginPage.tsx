@@ -5,14 +5,8 @@ import _ from "lodash";
 import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
-import { Button, TextField, Typography, Margin } from "components";
+import { Button, TextField, Typography, Margin, Layout } from "components";
 import useAuth from "hooks/useAuth";
-
-const Container = styled.div`
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 40px 16px;
-`;
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -46,12 +40,11 @@ const LoginPage: React.FC = () => {
       return;
     }
 
-    // route to /search-user-info
-    history.push("/search-user-info");
+    history.push("/my-info");
   };
 
   return (
-    <Container>
+    <Layout>
       <Typography fontSize="1.5rem">로그인 페이지</Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
@@ -74,7 +67,7 @@ const LoginPage: React.FC = () => {
       <Typography role="button" onClick={() => history.push("/reset-password")}>
         비밀번호 재설정
       </Typography>
-    </Container>
+    </Layout>
   );
 };
 

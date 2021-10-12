@@ -7,6 +7,7 @@ const Button = styled.button<ColorProps>`
   padding: 10px 12px;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   ${color}
 `;
 
