@@ -56,5 +56,6 @@
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "7.11.0",
     "eslint-config-prettier": "^8.3.0"
-  }
+  },
+  "proxy": "https://ably-frontend-assignment-server.vercel.app"
 }
