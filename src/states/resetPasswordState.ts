@@ -8,6 +8,7 @@ const resetPasswordState = atom({
   default: {
     email: "",
     issueToken: "",
+    remainTime: 0,
     confirmToken: "",
   },
   effects_UNSTABLE: [persistAtom],
