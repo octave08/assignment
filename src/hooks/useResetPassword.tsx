@@ -2,7 +2,7 @@ import axios from "axios";
 import _ from "lodash";
 import { useRecoilState } from "recoil";
 
-import resetPasswordState from "states/resetPasswordState";
+import { resetPasswordState } from "states";
 
 interface RequestAuthCodeProps {
   email: string;

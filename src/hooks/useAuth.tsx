@@ -2,7 +2,7 @@ import axios from "axios";
 import _ from "lodash";
 import { useRecoilState } from "recoil";
 
-import authState from "states/authState";
+import { authState } from "states";
 
 const useAuth = (): {
   accessToken: string | undefined;
