@@ -17,6 +17,7 @@ const Form = styled.form<FlexboxProps>`
   }
 `;
 
+// 비밀번호 변경 페이지
 const ChangePasswordPage: React.FC = () => {
   const history = useHistory();
   const { changePassword } = useResetPassword();
@@ -26,6 +27,7 @@ const ChangePasswordPage: React.FC = () => {
   });
 
   const submit = async () => {
+    // 비밀번호 변경하기 Button을 클릭하면 새로운 비밀번호와 새로운 비밀번호 확인을 검증합니다.
     if (_.isEmpty(form.newPassword) || _.isEmpty(form.newPasswordConfirm)) {
       alert("비밀번호 및 비밀번호 확인을 입력해주세요");
       return;
@@ -36,11 +38,12 @@ const ChangePasswordPage: React.FC = () => {
       return;
     }
 
+    // 비밀번호 변경 API를 호출하고 응답 결과에 따라 처리합니다.
+    // 호출에 실패하면 메시지로 알립니다. (in changePassword)
     const success = await changePassword(form);
     if (success) {
+      // 호출에 성공하면 메시지로 알립니다.
       alert("성공적으로 비밀번호가 변경되었습니다");
-    } else {
-      alert("비밀번호 변경에 실패했습니다");
     }
   };
 
@@ -50,18 +53,19 @@ const ChangePasswordPage: React.FC = () => {
       <Margin marginTop={24} />
       <Typography>비밀번호 변경 </Typography>
       <Margin marginTop={24} />
+      {/* 새로운 비밀번호, 새로운 비밀번호 확인 Input Form과 비밀번호 변경하기 Button을 배치합니다. */}
       <Form flexDirection="column">
         <TextField
           value={form.newPassword}
           onChange={(value: string) => setForm({ ...form, newPassword: value })}
-          placeholder="비밀번호 입력"
+          placeholder="새로운 비밀번호 입력"
         />
         <TextField
           value={form.newPasswordConfirm}
           onChange={(value: string) =>
             setForm({ ...form, newPasswordConfirm: value })
           }
-          placeholder="비밀번호 확인 입력"
+          placeholder="새로운 비밀번호 확인 입력"
         />
         <Margin marginTop={16} />
         <Button type="button" onClick={submit}>
@@ -69,7 +73,7 @@ const ChangePasswordPage: React.FC = () => {
         </Button>
         <Margin marginTop={2} />
         <Button type="button" onClick={() => history.push("/")}>
-          로그인 로 이동
+          로그인으로 이동
         </Button>
       </Form>
     </Layout>

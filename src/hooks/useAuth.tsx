@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import axios from "axios";
 import _ from "lodash";
 import { useRecoilState } from "recoil";
@@ -12,52 +13,62 @@ const useAuth = (): {
   }: {
     email: string;
     password: string;
-  }) => Promise<string | undefined>;
-  logout: () => Promise<void>;
+  }) => Promise<boolean>;
+  logout: () => Promise<boolean>;
 } => {
   const [auth, setAuth] = useRecoilState(authState);
 
-  const login = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }): Promise<string | undefined> => {
-    try {
-      const { data } = await axios({
-        method: "POST",
-        url: "/api/login",
-        headers: {
-          "Contnet-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        data: {
-          email,
-          password,
-        },
-      });
+  const login = useCallback(
+    async ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    }): Promise<boolean> => {
+      try {
+        const { data, status } = await axios({
+          method: "POST",
+          url: "/api/login",
+          headers: {
+            "Contnet-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          data: {
+            email,
+            password,
+          },
+        });
 
-      const accessToken = _.get(data, "accessToken");
-      setAuth({
-        accessToken,
-      });
+        if (status === 200) {
+          const accessToken = _.get(data, "accessToken");
+          setAuth({
+            accessToken,
+          });
+          return true;
+        }
 
-      return accessToken;
-    } catch (e) {
-      const message = _.get(e, "message");
-      alert(message);
-    }
-  };
+        // 호출에 실패하면 메시지로 알립니다.
+        alert(status);
+        return false;
+      } catch (e) {
+        // 호출에 실패하면 메시지로 알립니다.
+        const message = _.get(e, "message");
+        alert(message);
+        return false;
+      }
+    },
+    []
+  );
 
-  const logout = async () => {
+  const logout = useCallback(async (): Promise<boolean> => {
     if (!auth.accessToken) {
       alert("로그인 되어 있지 않습니다");
-      return;
+      return false;
     }
 
     try {
-      await axios({
+      const { status } = await axios({
         method: "POST",
         url: "/api/logout",
         headers: {
@@ -67,14 +78,23 @@ const useAuth = (): {
         },
       });
 
-      setAuth({
-        accessToken: "",
-      });
+      if (status === 200) {
+        setAuth({
+          accessToken: "",
+        });
+        return true;
+      }
+
+      // 호출에 실패하면 메시지로 알립니다.
+      alert(status);
+      return false;
     } catch (e) {
+      // 호출에 실패하면 메시지로 알립니다.
       const message = _.get(e, "message");
       alert(message);
+      return false;
     }
-  };
+  }, []);
 
   return {
     accessToken: auth.accessToken,
