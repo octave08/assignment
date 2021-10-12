@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
@@ -22,14 +23,26 @@ const Form = styled.form<FlexboxProps>`
 
 const LoginPage: React.FC = () => {
   const history = useHistory();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
   return (
     <Container>
       <Typography fontSize="1.5rem">로그인 페이지</Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
-        <TextField placeholder="이메일 입력" />
-        <TextField placeholder="비밀번호 입력" />
+        <TextField
+          value={form.email}
+          onChange={(value: string) => setForm({ ...form, email: value })}
+          placeholder="이메일 입력"
+        />
+        <TextField
+          value={form.password}
+          onChange={(value: string) => setForm({ ...form, password: value })}
+          placeholder="비밀번호 입력"
+        />
         <Margin marginTop={16} />
         <Button>로그인</Button>
       </Form>
