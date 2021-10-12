@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "axios": "^0.22.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.175",
     "@types/react-router-dom": "^5.3.1",
     "@types/styled-components": "^5.1.15",
@@ -54,5 +56,6 @@
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "7.11.0",
     "eslint-config-prettier": "^8.3.0"
-  }
+  },
+  "proxy": "https://ably-frontend-assignment-server.vercel.app"
 }
