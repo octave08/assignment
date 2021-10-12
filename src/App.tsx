@@ -7,7 +7,7 @@ import {
   ChangePasswordPage,
   SearchUserInfoPage,
   PageNotFound,
-} from "./pages";
+} from "pages";
 
 const App: React.FC = () => {
   return (

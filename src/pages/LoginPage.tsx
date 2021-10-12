@@ -5,8 +5,8 @@ import _ from "lodash";
 import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
-import { Button, TextField, Typography, Margin } from "../components";
-import useAuth from "../hooks/useAuth";
+import { Button, TextField, Typography, Margin } from "components";
+import useAuth from "hooks/useAuth";
 
 const Container = styled.div`
   max-width: 480px;
