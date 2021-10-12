@@ -1,6 +1,8 @@
-import { useState } from "react";
 import axios from "axios";
 import _ from "lodash";
+import { useRecoilState } from "recoil";
+
+import authState from "states/authState";
 
 const useAuth = (): {
   accessToken: string | undefined;
@@ -13,7 +15,7 @@ const useAuth = (): {
   }) => Promise<string | undefined>;
   logout: () => Promise<void>;
 } => {
-  const [accessToken, setAccessToken] = useState<string | undefined>(undefined);
+  const [auth, setAuth] = useRecoilState(authState);
 
   const login = async ({
     email,
@@ -40,17 +42,19 @@ const useAuth = (): {
         },
       });
 
-      const token = _.get(data, "accessToken");
-      setAccessToken(token);
+      const accessToken = _.get(data, "accessToken");
+      setAuth({
+        accessToken,
+      });
 
-      return token;
+      return accessToken;
     } catch (e) {
       console.log(e);
     }
   };
 
   const logout = async () => {
-    if (!accessToken) {
+    if (!auth.accessToken) {
       alert("로그인 되어 있지 않습니다");
       return;
     }
@@ -61,7 +65,7 @@ const useAuth = (): {
         url: "/api/logout",
         headers: {
           "Contnet-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${auth.accessToken}`,
           "Access-Control-Allow-Origin": "*",
         },
       });
@@ -74,7 +78,7 @@ const useAuth = (): {
   };
 
   return {
-    accessToken,
+    accessToken: auth.accessToken,
     login,
     logout,
   };
