@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import _ from "lodash";
 
 import styled from "styled-components";
 
@@ -33,8 +34,8 @@ const MyInfoPage: React.FC = () => {
         setUser(data);
       })
       .catch((e) => {
-        console.log(e);
-        alert("유저 정보 조회 실패");
+        const message = _.get(e, "message");
+        alert(message);
       });
   }, []);
 
