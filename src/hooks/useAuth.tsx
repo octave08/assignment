@@ -13,8 +13,8 @@ const useAuth = (): {
   }: {
     email: string;
     password: string;
-  }) => Promise<string | undefined>;
-  logout: () => Promise<void>;
+  }) => Promise<boolean>;
+  logout: () => Promise<boolean>;
 } => {
   const [auth, setAuth] = useRecoilState(authState);
 
@@ -25,9 +25,9 @@ const useAuth = (): {
     }: {
       email: string;
       password: string;
-    }): Promise<string | undefined> => {
+    }): Promise<boolean> => {
       try {
-        const { data } = await axios({
+        const { data, status } = await axios({
           method: "POST",
           url: "/api/login",
           headers: {
@@ -40,28 +40,33 @@ const useAuth = (): {
           },
         });
 
-        const accessToken = _.get(data, "accessToken");
-        setAuth({
-          accessToken,
-        });
+        if (status === 200) {
+          const accessToken = _.get(data, "accessToken");
+          setAuth({
+            accessToken,
+          });
+          return true;
+        }
 
-        return accessToken;
+        alert(status);
+        return false;
       } catch (e) {
         const message = _.get(e, "message");
         alert(message);
+        return false;
       }
     },
     []
   );
 
-  const logout = useCallback(async () => {
+  const logout = useCallback(async (): Promise<boolean> => {
     if (!auth.accessToken) {
       alert("로그인 되어 있지 않습니다");
-      return;
+      return false;
     }
 
     try {
-      await axios({
+      const { status } = await axios({
         method: "POST",
         url: "/api/logout",
         headers: {
@@ -71,12 +76,19 @@ const useAuth = (): {
         },
       });
 
-      setAuth({
-        accessToken: "",
-      });
+      if (status === 200) {
+        setAuth({
+          accessToken: "",
+        });
+        return true;
+      }
+
+      alert(status);
+      return false;
     } catch (e) {
       const message = _.get(e, "message");
       alert(message);
+      return false;
     }
   }, []);
 

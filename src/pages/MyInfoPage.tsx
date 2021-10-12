@@ -40,8 +40,10 @@ const MyInfoPage: React.FC = () => {
   }, []);
 
   const handleClick = async () => {
-    await logout();
-    history.push("/");
+    const success = await logout();
+    if (success) {
+      history.push("/");
+    }
   };
 
   return (

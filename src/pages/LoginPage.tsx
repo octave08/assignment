@@ -34,9 +34,8 @@ const LoginPage: React.FC = () => {
     }
 
     // 2. is account validate (with API)
-    const accessToken = await login(form);
-    if (_.isEmpty(accessToken)) {
-      alert("로그인 실패");
+    const success = await login(form);
+    if (!success) {
       return;
     }
 
