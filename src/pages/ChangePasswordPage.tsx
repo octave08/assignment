@@ -54,14 +54,14 @@ const ChangePasswordPage: React.FC = () => {
         <TextField
           value={form.newPassword}
           onChange={(value: string) => setForm({ ...form, newPassword: value })}
-          placeholder="비밀번호 입력"
+          placeholder="새로운 비밀번호 입력"
         />
         <TextField
           value={form.newPasswordConfirm}
           onChange={(value: string) =>
             setForm({ ...form, newPasswordConfirm: value })
           }
-          placeholder="비밀번호 확인 입력"
+          placeholder="새로운 비밀번호 확인 입력"
         />
         <Margin marginTop={16} />
         <Button type="button" onClick={submit}>
@@ -69,7 +69,7 @@ const ChangePasswordPage: React.FC = () => {
         </Button>
         <Margin marginTop={2} />
         <Button type="button" onClick={() => history.push("/")}>
-          로그인 로 이동
+          로그인으로 이동
         </Button>
       </Form>
     </Layout>
