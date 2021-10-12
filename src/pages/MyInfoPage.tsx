@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import _ from "lodash";
 
 import styled from "styled-components";
 
@@ -33,9 +32,8 @@ const MyInfoPage: React.FC = () => {
       .then(({ data }) => {
         setUser(data);
       })
-      .catch((e) => {
-        const message = _.get(e, "message");
-        alert(message);
+      .catch(() => {
+        history.push("/");
       });
   }, []);
 
@@ -56,9 +54,9 @@ const MyInfoPage: React.FC = () => {
             <Profile src={user?.profileImage} alt="프로필 이미지" />
             <Margin marginLeft={16} />
             <div>
-              <Typography>{user.name}</Typography>
+              <Typography>{user?.name}</Typography>
               <Margin marginTop={2} />
-              <Typography>{user.email}</Typography>
+              <Typography>{user?.email}</Typography>
             </div>
           </>
         ) : (
