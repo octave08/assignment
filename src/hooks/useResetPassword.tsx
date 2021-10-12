@@ -45,9 +45,11 @@ const useResetPassword = (): {
 
       if (status === 200) {
         const issueToken = _.get(data, "issueToken");
+        const remainTime = _.now() + _.get(data, "remainMillisecond");
         setResetPassword({
           email,
           issueToken,
+          remainTime,
           confirmToken: "",
         });
         return true;
