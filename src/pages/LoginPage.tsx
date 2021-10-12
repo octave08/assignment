@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import _ from "lodash";
 
 import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
@@ -28,11 +29,25 @@ const LoginPage: React.FC = () => {
     password: "",
   });
 
+  const submit = () => {
+    // Check a validation of form state
+    // 1. is form empty?
+    if (_.isEmpty(form.email) || _.isEmpty(form.password)) {
+      alert("이메일 또는 비밀번호를 입력해주세요");
+      return;
+    }
+
+    // 2. is account validate (with API)
+
+    // route to /search-user-info
+    history.push("/search-user-info");
+  };
+
   return (
     <Container>
       <Typography fontSize="1.5rem">로그인 페이지</Typography>
       <Margin marginTop={24} />
-      <Form flexDirection="column">
+      <Form flexDirection="column" onSubmit={submit}>
         <TextField
           value={form.email}
           onChange={(value: string) => setForm({ ...form, email: value })}
@@ -44,7 +59,7 @@ const LoginPage: React.FC = () => {
           placeholder="비밀번호 입력"
         />
         <Margin marginTop={16} />
-        <Button>로그인</Button>
+        <Button type="submit">로그인</Button>
       </Form>
       <Margin marginTop={16} />
       <Typography role="button" onClick={() => history.push("/reset-password")}>
