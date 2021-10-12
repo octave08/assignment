@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import axios from "axios";
 import _ from "lodash";
 import { useRecoilState } from "recoil";
@@ -17,40 +18,43 @@ const useAuth = (): {
 } => {
   const [auth, setAuth] = useRecoilState(authState);
 
-  const login = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }): Promise<string | undefined> => {
-    try {
-      const { data } = await axios({
-        method: "POST",
-        url: "/api/login",
-        headers: {
-          "Contnet-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        data: {
-          email,
-          password,
-        },
-      });
+  const login = useCallback(
+    async ({
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    }): Promise<string | undefined> => {
+      try {
+        const { data } = await axios({
+          method: "POST",
+          url: "/api/login",
+          headers: {
+            "Contnet-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          data: {
+            email,
+            password,
+          },
+        });
 
-      const accessToken = _.get(data, "accessToken");
-      setAuth({
-        accessToken,
-      });
+        const accessToken = _.get(data, "accessToken");
+        setAuth({
+          accessToken,
+        });
 
-      return accessToken;
-    } catch (e) {
-      const message = _.get(e, "message");
-      alert(message);
-    }
-  };
+        return accessToken;
+      } catch (e) {
+        const message = _.get(e, "message");
+        alert(message);
+      }
+    },
+    []
+  );
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     if (!auth.accessToken) {
       alert("로그인 되어 있지 않습니다");
       return;
@@ -74,7 +78,7 @@ const useAuth = (): {
       const message = _.get(e, "message");
       alert(message);
     }
-  };
+  }, []);
 
   return {
     accessToken: auth.accessToken,
