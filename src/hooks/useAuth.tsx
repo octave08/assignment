@@ -10,10 +10,10 @@ const useAuth = (): {
   }: {
     email: string;
     password: string;
-  }) => Promise<void>;
+  }) => Promise<string | undefined>;
   logout: () => Promise<void>;
 } => {
-  const [accessToken, setAccessToken] = useState(undefined);
+  const [accessToken, setAccessToken] = useState<string | undefined>(undefined);
 
   const login = async ({
     email,
@@ -21,7 +21,7 @@ const useAuth = (): {
   }: {
     email: string;
     password: string;
-  }) => {
+  }): Promise<string | undefined> => {
     try {
       const { data } = await axios({
         method: "POST",
@@ -40,10 +40,10 @@ const useAuth = (): {
         },
       });
 
-      const accessToken = _.get(data, "accessToken");
-      if (!_.isEmpty(accessToken)) {
-        setAccessToken(accessToken);
-      }
+      const token = _.get(data, "accessToken");
+      setAccessToken(token);
+
+      return token;
     } catch (e) {
       console.log(e);
     }
