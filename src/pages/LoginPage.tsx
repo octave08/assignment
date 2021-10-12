@@ -17,6 +17,7 @@ const Form = styled.form<FlexboxProps>`
   }
 `;
 
+// 로그인 페이지(as B)
 const LoginPage: React.FC = () => {
   const history = useHistory();
   const { login } = useAuth();
@@ -26,23 +27,26 @@ const LoginPage: React.FC = () => {
   });
 
   const submit = async () => {
+    // 로그인 Button을 클릭하면 아이디와 비밀번호를 검증 & 처리합니다.
     if (_.isEmpty(form.email) || _.isEmpty(form.password)) {
       alert("이메일 또는 비밀번호를 입력해주세요");
       return;
     }
 
+    // 로그인 API를 호출하고 응답 결과에 따라 처리합니다.
+    // 호출에 실패하면 메시지로 알립니다. (in login)
     const success = await login(form);
-    if (!success) {
-      return;
+    if (success) {
+      // 호출이 성공하면 회원 정보 조회 페이지로 이동합니다.
+      history.push("/my-info");
     }
-
-    history.push("/my-info");
   };
 
   return (
     <Layout>
       <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
+      {/* 아이디와 비밀번호를 입력 할 수 있는 Input Form과 로그인 Button을 배치합니다. */}
       <Form flexDirection="column">
         <TextField
           value={form.email}
@@ -60,6 +64,8 @@ const LoginPage: React.FC = () => {
         </Button>
       </Form>
       <Margin marginTop={16} />
+      {/* 비밀번호 재설정 Button을 배치합니다. */}
+      {/* 클릭하면 비빌번호 재설정 > 인증 코드 발급 요청 페이지로 이동합니다. */}
       <Typography
         role="button"
         fontSize="0.8rem"

@@ -48,9 +48,11 @@ const useAuth = (): {
           return true;
         }
 
+        // 호출에 실패하면 메시지로 알립니다.
         alert(status);
         return false;
       } catch (e) {
+        // 호출에 실패하면 메시지로 알립니다.
         const message = _.get(e, "message");
         alert(message);
         return false;
@@ -83,9 +85,11 @@ const useAuth = (): {
         return true;
       }
 
+      // 호출에 실패하면 메시지로 알립니다.
       alert(status);
       return false;
     } catch (e) {
+      // 호출에 실패하면 메시지로 알립니다.
       const message = _.get(e, "message");
       alert(message);
       return false;
