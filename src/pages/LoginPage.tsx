@@ -40,8 +40,7 @@ const LoginPage: React.FC = () => {
       return;
     }
 
-    // route to /search-user-info
-    history.push("/search-user-info");
+    history.push("/my-info");
   };
 
   return (

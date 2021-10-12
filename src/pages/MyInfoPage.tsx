@@ -14,7 +14,7 @@ const Profile = styled.img`
   border-radius: 24px;
 `;
 
-const SearchUserInfoPage: React.FC = () => {
+const MyInfoPage: React.FC = () => {
   const history = useHistory();
   const { accessToken, logout } = useAuth();
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -68,4 +68,4 @@ const SearchUserInfoPage: React.FC = () => {
   );
 };
 
-export default SearchUserInfoPage;
+export default MyInfoPage;

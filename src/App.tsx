@@ -5,7 +5,7 @@ import {
   ResetPasswordPage,
   VerifyCodePage,
   ChangePasswordPage,
-  SearchUserInfoPage,
+  MyInfoPage,
   PageNotFound,
 } from "pages";
 
@@ -25,8 +25,8 @@ const App: React.FC = () => {
         <Route exact path="/reset-password/change-password">
           <ChangePasswordPage />
         </Route>
-        <Route exact path="/search-user-info">
-          <SearchUserInfoPage />
+        <Route exact path="/my-info">
+          <MyInfoPage />
         </Route>
         <Route component={PageNotFound} />
       </Switch>
