@@ -26,14 +26,11 @@ const LoginPage: React.FC = () => {
   });
 
   const submit = async () => {
-    // Check a validation of form state
-    // 1. is form empty?
     if (_.isEmpty(form.email) || _.isEmpty(form.password)) {
       alert("이메일 또는 비밀번호를 입력해주세요");
       return;
     }
 
-    // 2. is account validate (with API)
     const success = await login(form);
     if (!success) {
       return;
