@@ -45,7 +45,8 @@ const useAuth = (): {
 
       return accessToken;
     } catch (e) {
-      console.log(e);
+      const message = _.get(e, "message");
+      alert(message);
     }
   };
 
@@ -70,7 +71,8 @@ const useAuth = (): {
         accessToken: "",
       });
     } catch (e) {
-      console.log(e);
+      const message = _.get(e, "message");
+      alert(message);
     }
   };
 

@@ -55,8 +55,9 @@ const useResetPassword = (): {
 
       alert(status);
       return false;
-    } catch {
-      alert("네트워크 에러가 발생했습니다");
+    } catch (e) {
+      const message = _.get(e, "message");
+      alert(message);
       return false;
     }
   };
@@ -88,8 +89,9 @@ const useResetPassword = (): {
 
       alert(status);
       return false;
-    } catch {
-      alert("네트워크 에러가 발생했습니다");
+    } catch (e) {
+      const message = _.get(e, "message");
+      alert(message);
       return false;
     }
   };
@@ -120,8 +122,9 @@ const useResetPassword = (): {
 
       alert(status);
       return false;
-    } catch {
-      alert("네트워크 에러가 발생했습니다");
+    } catch (e) {
+      const message = _.get(e, "message");
+      alert(message);
       return false;
     }
   };
