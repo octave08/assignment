@@ -33,12 +33,8 @@ const useAuth = (): {
           "Access-Control-Allow-Origin": "*",
         },
         data: {
-          // test account
-          email: "ably933@dummy.com",
-          password: "!abc321#$",
-
-          // email: email,
-          // password: password,
+          email,
+          password,
         },
       });
 
