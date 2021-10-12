@@ -46,8 +46,9 @@ const useResetPassword = (): {
       if (status === 200) {
         const issueToken = _.get(data, "issueToken");
         setResetPassword({
-          ...resetPassword,
+          email,
           issueToken,
+          confirmToken: "",
         });
         return true;
       }
