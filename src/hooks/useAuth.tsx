@@ -2,7 +2,7 @@ import axios from "axios";
 import _ from "lodash";
 import { useRecoilState } from "recoil";
 
-import authState from "states/authState";
+import { authState } from "states";
 
 const useAuth = (): {
   accessToken: string | undefined;
@@ -33,12 +33,8 @@ const useAuth = (): {
           "Access-Control-Allow-Origin": "*",
         },
         data: {
-          // test account
-          email: "ably933@dummy.com",
-          password: "!abc321#$",
-
-          // email: email,
-          // password: password,
+          email,
+          password,
         },
       });
 
@@ -49,7 +45,8 @@ const useAuth = (): {
 
       return accessToken;
     } catch (e) {
-      console.log(e);
+      const message = _.get(e, "message");
+      alert(message);
     }
   };
 
@@ -74,7 +71,8 @@ const useAuth = (): {
         accessToken: "",
       });
     } catch (e) {
-      console.log(e);
+      const message = _.get(e, "message");
+      alert(message);
     }
   };
 

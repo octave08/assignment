@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
-import useResetPassword from "hooks/useResetPassword";
+import { useResetPassword } from "hooks";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -38,9 +38,9 @@ const VerifyCodePage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">비밀번호 재설정 페이지</Typography>
+      <Typography fontSize="1.5rem">비밀번호 재설정 </Typography>
       <Margin marginTop={24} />
-      <Typography>인증 코드 검증 페이지</Typography>
+      <Typography>인증 코드 검증 </Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
         <TextField

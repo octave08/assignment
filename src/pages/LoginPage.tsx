@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
-import useAuth from "hooks/useAuth";
+import { useAuth } from "hooks";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">로그인 페이지</Typography>
+      <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
       <Form flexDirection="column">
         <TextField

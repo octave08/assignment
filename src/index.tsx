@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
 
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import GlobalStyle from "assets/GlobalStyle";
+import theme from "assets/theme";
 
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./GlobalStyle";
-import theme from "./theme";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>

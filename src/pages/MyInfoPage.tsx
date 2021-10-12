@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import User from "entities/User";
 import { Button, Typography, Margin, Layout, Card } from "components";
-import useAuth from "hooks/useAuth";
+import { useAuth } from "hooks";
 import axios from "axios";
 
 const Profile = styled.img`
@@ -45,7 +45,7 @@ const MyInfoPage: React.FC = () => {
 
   return (
     <Layout>
-      <Typography fontSize="1.5rem">회원 정보 조회 페이지</Typography>
+      <Typography fontSize="1.5rem">회원 정보 조회 </Typography>
       <Margin marginTop={24} />
       <Card>
         {user ? (
