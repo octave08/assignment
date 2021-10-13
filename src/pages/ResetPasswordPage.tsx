@@ -7,6 +7,7 @@ import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useResetPassword } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -24,13 +25,14 @@ const ResetPasswordPage: React.FC = () => {
   const [form, setForm] = useState({
     email: "",
   });
+  const res = suite(form, _.keys(form));
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // 다음 Button을 클릭하면 이메일을 검증합니다.
-    if (_.isEmpty(form.email)) {
-      alert("이메일을 입력해주세요");
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 

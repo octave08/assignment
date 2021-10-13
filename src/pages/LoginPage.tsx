@@ -7,6 +7,7 @@ import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useAuth } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -25,13 +26,13 @@ const LoginPage: React.FC = () => {
     email: "",
     password: "",
   });
+  const res = suite(form, _.keys(form));
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // 로그인 Button을 클릭하면 아이디와 비밀번호를 검증 & 처리합니다.
-    if (_.isEmpty(form.email) || _.isEmpty(form.password)) {
-      alert("이메일 또는 비밀번호를 입력해주세요");
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 

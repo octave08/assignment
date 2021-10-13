@@ -10,6 +10,7 @@ import { remainTimeState } from "states";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useResetPassword } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -30,13 +31,14 @@ const VerifyCodePage: React.FC = () => {
   const [form, setForm] = useState({
     authCode: "",
   });
+  const res = suite(form, _.keys(form));
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // 다음 Button을 클릭하면 인증 코드를 검증합니다.
-    if (_.isEmpty(form.authCode)) {
-      alert("인증 코드를 입력해주세요");
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 

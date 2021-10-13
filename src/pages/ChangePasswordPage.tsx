@@ -7,6 +7,7 @@ import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useResetPassword } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -25,18 +26,14 @@ const ChangePasswordPage: React.FC = () => {
     newPassword: "",
     newPasswordConfirm: "",
   });
+  const res = suite(form, _.keys(form));
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // 비밀번호 변경하기 Button을 클릭하면 새로운 비밀번호와 새로운 비밀번호 확인을 검증합니다.
-    if (_.isEmpty(form.newPassword) || _.isEmpty(form.newPasswordConfirm)) {
-      alert("비밀번호 및 비밀번호 확인을 입력해주세요");
-      return;
-    }
-
-    if (form.newPassword !== form.newPasswordConfirm) {
-      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다");
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 
