@@ -25,7 +25,9 @@ const ResetPasswordPage: React.FC = () => {
     email: "",
   });
 
-  const submit = async () => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     // 다음 Button을 클릭하면 이메일을 검증합니다.
     if (_.isEmpty(form.email)) {
       alert("이메일을 입력해주세요");
@@ -48,7 +50,7 @@ const ResetPasswordPage: React.FC = () => {
       <Typography>인증 코드 발급 요청 </Typography>
       <Margin marginTop={24} />
       {/* 이메일을 입력 할 수 있는 Input Form과 다음(next) Button을 배치합니다. */}
-      <Form flexDirection="column">
+      <Form flexDirection="column" onSubmit={submit}>
         <TextField
           type="email"
           value={form.email}
@@ -56,9 +58,7 @@ const ResetPasswordPage: React.FC = () => {
           placeholder="이메일 입력"
         />
         <Margin marginTop={16} />
-        <Button type="button" onClick={submit}>
-          다음
-        </Button>
+        <Button type="submit">다음</Button>
       </Form>
     </Layout>
   );

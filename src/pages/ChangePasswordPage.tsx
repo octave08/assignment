@@ -26,7 +26,9 @@ const ChangePasswordPage: React.FC = () => {
     newPasswordConfirm: "",
   });
 
-  const submit = async () => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     // 비밀번호 변경하기 Button을 클릭하면 새로운 비밀번호와 새로운 비밀번호 확인을 검증합니다.
     if (_.isEmpty(form.newPassword) || _.isEmpty(form.newPasswordConfirm)) {
       alert("비밀번호 및 비밀번호 확인을 입력해주세요");
@@ -54,7 +56,7 @@ const ChangePasswordPage: React.FC = () => {
       <Typography>비밀번호 변경 </Typography>
       <Margin marginTop={24} />
       {/* 새로운 비밀번호, 새로운 비밀번호 확인 Input Form과 비밀번호 변경하기 Button을 배치합니다. */}
-      <Form flexDirection="column">
+      <Form flexDirection="column" onSubmit={submit}>
         <TextField
           type="password"
           value={form.newPassword}
@@ -70,14 +72,12 @@ const ChangePasswordPage: React.FC = () => {
           placeholder="새로운 비밀번호 확인 입력"
         />
         <Margin marginTop={16} />
-        <Button type="button" onClick={submit}>
-          변경하기
-        </Button>
-        <Margin marginTop={2} />
-        <Button type="button" onClick={() => history.push("/")}>
-          로그인으로 이동
-        </Button>
+        <Button type="submit">변경하기</Button>
       </Form>
+      <Margin marginTop={2} />
+      <Button type="button" onClick={() => history.push("/")}>
+        로그인으로 이동
+      </Button>
     </Layout>
   );
 };
