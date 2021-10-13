@@ -56,16 +56,20 @@ const MyInfoPage: React.FC = () => {
       <Typography fontSize="1.5rem">회원 정보 조회 </Typography>
       <Margin marginTop={24} />
       {/* 회원 정보를 보여줄 수 있는 Card를 배치합니다. */}
-      <Card>
+      <Card data-cy="myInfoCard">
         {user ? (
           // 이름, 이메일, 프로필 이미지
           <>
-            <Profile src={user?.profileImage} alt="프로필 이미지" />
+            <Profile
+              src={user?.profileImage}
+              alt="프로필 이미지"
+              data-cy="profile"
+            />
             <Margin marginLeft={16} />
             <div>
-              <Typography>{user?.name}</Typography>
+              <Typography data-cy="name">{user?.name}</Typography>
               <Margin marginTop={2} />
-              <Typography>{user?.email}</Typography>
+              <Typography data-cy="email">{user?.email}</Typography>
             </div>
           </>
         ) : (
@@ -75,7 +79,9 @@ const MyInfoPage: React.FC = () => {
       <Margin marginTop={16} />
       {/* 로그아웃 Button을 배치합니다. */}
 
-      <Button onClick={handleClick}>로그아웃</Button>
+      <Button onClick={handleClick} data-cy="logoutButton">
+        로그아웃
+      </Button>
     </Layout>
   );
 };

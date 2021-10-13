@@ -52,7 +52,7 @@ const ResetPasswordPage: React.FC = () => {
       <Typography>인증 코드 발급 요청 </Typography>
       <Margin marginTop={24} />
       {/* 이메일을 입력 할 수 있는 Input Form과 다음(next) Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit}>
+      <Form flexDirection="column" onSubmit={submit} data-cy="emailForm">
         <TextField
           type="email"
           value={form.email}

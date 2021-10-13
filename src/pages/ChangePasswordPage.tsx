@@ -53,12 +53,17 @@ const ChangePasswordPage: React.FC = () => {
       <Typography>비밀번호 변경 </Typography>
       <Margin marginTop={24} />
       {/* 새로운 비밀번호, 새로운 비밀번호 확인 Input Form과 비밀번호 변경하기 Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit}>
+      <Form
+        flexDirection="column"
+        onSubmit={submit}
+        data-cy="changePasswordForm"
+      >
         <TextField
           type="password"
           value={form.newPassword}
           onChange={(value: string) => setForm({ ...form, newPassword: value })}
           placeholder="새로운 비밀번호 입력"
+          data-cy="newPassword"
         />
         <TextField
           type="password"
@@ -67,6 +72,7 @@ const ChangePasswordPage: React.FC = () => {
             setForm({ ...form, newPasswordConfirm: value })
           }
           placeholder="새로운 비밀번호 확인 입력"
+          data-cy="newPasswordConfirm"
         />
         <Margin marginTop={16} />
         <Button type="submit">변경하기</Button>
