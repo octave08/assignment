@@ -33,7 +33,7 @@ const ChangePasswordPage: React.FC = () => {
 
     // 비밀번호 변경하기 Button을 클릭하면 새로운 비밀번호와 새로운 비밀번호 확인을 검증합니다.
     if (res.hasErrors()) {
-      alert(_.chain(res.getErrors()).flatMap().head());
+      alert(_.chain(res.getErrors()).flatMap().head().value());
       return;
     }
 

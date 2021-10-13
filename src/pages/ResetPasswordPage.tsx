@@ -32,7 +32,7 @@ const ResetPasswordPage: React.FC = () => {
 
     // 다음 Button을 클릭하면 이메일을 검증합니다.
     if (res.hasErrors()) {
-      alert(_.chain(res.getErrors()).flatMap().head());
+      alert(_.chain(res.getErrors()).flatMap().head().value());
       return;
     }
 

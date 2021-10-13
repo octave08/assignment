@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
 
     if (res.hasErrors()) {
-      alert(_.chain(res.getErrors()).flatMap().head());
+      alert(_.chain(res.getErrors()).flatMap().head().value());
       return;
     }
 
