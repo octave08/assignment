@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
-import styled from "styled-components";
-import { flexbox, FlexboxProps } from "styled-system";
 import { useRecoilValue } from "recoil";
 
 import { remainTimeState } from "states";
@@ -14,19 +12,10 @@ import {
   Typography,
   Margin,
   Layout,
-  Flex,
+  Form,
 } from "components";
 import { useResetPassword } from "hooks";
 import suite from "utils/suite";
-
-const Form = styled.form<FlexboxProps>`
-  display: flex;
-  ${flexbox};
-
-  input {
-    margin-bottom: 8px;
-  }
-`;
 
 // 인증 코드 검증 페이지
 const VerifyCodePage: React.FC = () => {
@@ -93,7 +82,7 @@ const VerifyCodePage: React.FC = () => {
       <Typography>인증 코드 검증 </Typography>
       <Margin marginTop={24} />
       {/* 인증 코드를 입력 할 수 있는 Input Form과 인증 만료 시간 Counter, 다음 Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit} data-cy="authCodeForm">
+      <Form onSubmit={submit} data-cy="authCodeForm">
         <TextField
           type="text"
           value={form.authCode}

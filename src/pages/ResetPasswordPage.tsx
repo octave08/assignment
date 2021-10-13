@@ -2,21 +2,16 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
-import styled from "styled-components";
-import { flexbox, FlexboxProps } from "styled-system";
-
-import { Button, TextField, Typography, Margin, Layout } from "components";
+import {
+  Button,
+  TextField,
+  Typography,
+  Margin,
+  Layout,
+  Form,
+} from "components";
 import { useResetPassword } from "hooks";
 import suite from "utils/suite";
-
-const Form = styled.form<FlexboxProps>`
-  display: flex;
-  ${flexbox};
-
-  input {
-    margin-bottom: 8px;
-  }
-`;
 
 // 비밀번호 재설정 페이지(as A)
 const ResetPasswordPage: React.FC = () => {
@@ -52,7 +47,7 @@ const ResetPasswordPage: React.FC = () => {
       <Typography>인증 코드 발급 요청 </Typography>
       <Margin marginTop={24} />
       {/* 이메일을 입력 할 수 있는 Input Form과 다음(next) Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit} data-cy="emailForm">
+      <Form onSubmit={submit} data-cy="emailForm">
         <TextField
           type="email"
           value={form.email}
