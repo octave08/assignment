@@ -2,21 +2,16 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
-import styled from "styled-components";
-import { flexbox, FlexboxProps } from "styled-system";
-
-import { Button, TextField, Typography, Margin, Layout } from "components";
+import {
+  Button,
+  TextField,
+  Typography,
+  Margin,
+  Layout,
+  Form,
+} from "components";
 import { useResetPassword } from "hooks";
 import suite from "utils/suite";
-
-const Form = styled.form<FlexboxProps>`
-  display: flex;
-  ${flexbox};
-
-  input {
-    margin-bottom: 8px;
-  }
-`;
 
 // 비밀번호 변경 페이지
 const ChangePasswordPage: React.FC = () => {
@@ -53,11 +48,7 @@ const ChangePasswordPage: React.FC = () => {
       <Typography>비밀번호 변경 </Typography>
       <Margin marginTop={24} />
       {/* 새로운 비밀번호, 새로운 비밀번호 확인 Input Form과 비밀번호 변경하기 Button을 배치합니다. */}
-      <Form
-        flexDirection="column"
-        onSubmit={submit}
-        data-cy="changePasswordForm"
-      >
+      <Form onSubmit={submit} data-cy="changePasswordForm">
         <TextField
           type="password"
           value={form.newPassword}

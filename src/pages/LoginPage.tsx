@@ -2,21 +2,16 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
-import styled from "styled-components";
-import { flexbox, FlexboxProps } from "styled-system";
-
-import { Button, TextField, Typography, Margin, Layout } from "components";
+import {
+  Button,
+  TextField,
+  Typography,
+  Margin,
+  Layout,
+  Form,
+} from "components";
 import { useAuth } from "hooks";
 import suite from "utils/suite";
-
-const Form = styled.form<FlexboxProps>`
-  display: flex;
-  ${flexbox};
-
-  input {
-    margin-bottom: 8px;
-  }
-`;
 
 // 로그인 페이지(as B)
 const LoginPage: React.FC = () => {
@@ -50,7 +45,7 @@ const LoginPage: React.FC = () => {
       <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
       {/* 아이디와 비밀번호를 입력 할 수 있는 Input Form과 로그인 Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit} data-cy="loginForm">
+      <Form onSubmit={submit} data-cy="loginForm">
         <TextField
           type="email"
           value={form.email}
