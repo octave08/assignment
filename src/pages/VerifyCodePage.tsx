@@ -8,7 +8,14 @@ import { useRecoilValue } from "recoil";
 
 import { remainTimeState } from "states";
 
-import { Button, TextField, Typography, Margin, Layout } from "components";
+import {
+  Button,
+  TextField,
+  Typography,
+  Margin,
+  Layout,
+  Flex,
+} from "components";
 import { useResetPassword } from "hooks";
 import suite from "utils/suite";
 
@@ -38,7 +45,7 @@ const VerifyCodePage: React.FC = () => {
 
     // 다음 Button을 클릭하면 인증 코드를 검증합니다.
     if (res.hasErrors()) {
-      alert(_.chain(res.getErrors()).flatMap().head());
+      alert(_.chain(res.getErrors()).flatMap().head().value());
       return;
     }
 
@@ -86,7 +93,7 @@ const VerifyCodePage: React.FC = () => {
       <Typography>인증 코드 검증 </Typography>
       <Margin marginTop={24} />
       {/* 인증 코드를 입력 할 수 있는 Input Form과 인증 만료 시간 Counter, 다음 Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit}>
+      <Form flexDirection="column" onSubmit={submit} data-cy="authCodeForm">
         <TextField
           type="text"
           value={form.authCode}
@@ -95,7 +102,7 @@ const VerifyCodePage: React.FC = () => {
         />
         <Margin marginTop={1} />
         {/* 인증 만료 시간 Counter는 앞서 저장한 남은 인증 시간을 활용해서 mm:ss로 표현합니다. */}
-        <Typography fontSize="0.8rem" color="gray60">
+        <Typography fontSize="0.8rem" color="gray60" data-cy="counter">
           인증 시간 {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </Typography>
         <Margin marginTop={16} />

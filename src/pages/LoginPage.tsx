@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
     event.preventDefault();
 
     if (res.hasErrors()) {
-      alert(_.chain(res.getErrors()).flatMap().head());
+      alert(_.chain(res.getErrors()).flatMap().head().value());
       return;
     }
 
@@ -50,7 +50,7 @@ const LoginPage: React.FC = () => {
       <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
       {/* 아이디와 비밀번호를 입력 할 수 있는 Input Form과 로그인 Button을 배치합니다. */}
-      <Form flexDirection="column" onSubmit={submit}>
+      <Form flexDirection="column" onSubmit={submit} data-cy="loginForm">
         <TextField
           type="email"
           value={form.email}
@@ -74,6 +74,7 @@ const LoginPage: React.FC = () => {
         fontSize="0.8rem"
         color="gray60"
         onClick={() => history.push("/reset-password")}
+        data-cy="resetPasswordButton"
       >
         비밀번호 재설정
       </Typography>
