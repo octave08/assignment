@@ -7,6 +7,7 @@ import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useResetPassword } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -24,11 +25,14 @@ const ResetPasswordPage: React.FC = () => {
   const [form, setForm] = useState({
     email: "",
   });
+  const res = suite(form, _.keys(form));
 
-  const submit = async () => {
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     // 다음 Button을 클릭하면 이메일을 검증합니다.
-    if (_.isEmpty(form.email)) {
-      alert("이메일을 입력해주세요");
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 
@@ -48,16 +52,15 @@ const ResetPasswordPage: React.FC = () => {
       <Typography>인증 코드 발급 요청 </Typography>
       <Margin marginTop={24} />
       {/* 이메일을 입력 할 수 있는 Input Form과 다음(next) Button을 배치합니다. */}
-      <Form flexDirection="column">
+      <Form flexDirection="column" onSubmit={submit}>
         <TextField
+          type="email"
           value={form.email}
           onChange={(value: string) => setForm({ ...form, email: value })}
           placeholder="이메일 입력"
         />
         <Margin marginTop={16} />
-        <Button type="button" onClick={submit}>
-          다음
-        </Button>
+        <Button type="submit">다음</Button>
       </Form>
     </Layout>
   );

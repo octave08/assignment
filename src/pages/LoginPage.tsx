@@ -7,6 +7,7 @@ import { flexbox, FlexboxProps } from "styled-system";
 
 import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useAuth } from "hooks";
+import suite from "utils/suite";
 
 const Form = styled.form<FlexboxProps>`
   display: flex;
@@ -25,11 +26,13 @@ const LoginPage: React.FC = () => {
     email: "",
     password: "",
   });
+  const res = suite(form, _.keys(form));
 
-  const submit = async () => {
-    // 로그인 Button을 클릭하면 아이디와 비밀번호를 검증 & 처리합니다.
-    if (_.isEmpty(form.email) || _.isEmpty(form.password)) {
-      alert("이메일 또는 비밀번호를 입력해주세요");
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (res.hasErrors()) {
+      alert(_.chain(res.getErrors()).flatMap().head());
       return;
     }
 
@@ -47,21 +50,21 @@ const LoginPage: React.FC = () => {
       <Typography fontSize="1.5rem">로그인 </Typography>
       <Margin marginTop={24} />
       {/* 아이디와 비밀번호를 입력 할 수 있는 Input Form과 로그인 Button을 배치합니다. */}
-      <Form flexDirection="column">
+      <Form flexDirection="column" onSubmit={submit}>
         <TextField
+          type="email"
           value={form.email}
           onChange={(value: string) => setForm({ ...form, email: value })}
           placeholder="이메일 입력"
         />
         <TextField
+          type="password"
           value={form.password}
           onChange={(value: string) => setForm({ ...form, password: value })}
           placeholder="비밀번호 입력"
         />
         <Margin marginTop={16} />
-        <Button type="button" onClick={submit}>
-          로그인
-        </Button>
+        <Button type="submit">로그인</Button>
       </Form>
       <Margin marginTop={16} />
       {/* 비밀번호 재설정 Button을 배치합니다. */}
