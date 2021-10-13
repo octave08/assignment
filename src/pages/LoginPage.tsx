@@ -49,11 +49,13 @@ const LoginPage: React.FC = () => {
       {/* 아이디와 비밀번호를 입력 할 수 있는 Input Form과 로그인 Button을 배치합니다. */}
       <Form flexDirection="column">
         <TextField
+          type="email"
           value={form.email}
           onChange={(value: string) => setForm({ ...form, email: value })}
           placeholder="이메일 입력"
         />
         <TextField
+          type="password"
           value={form.password}
           onChange={(value: string) => setForm({ ...form, password: value })}
           placeholder="비밀번호 입력"

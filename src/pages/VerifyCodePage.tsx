@@ -84,6 +84,7 @@ const VerifyCodePage: React.FC = () => {
       {/* 인증 코드를 입력 할 수 있는 Input Form과 인증 만료 시간 Counter, 다음 Button을 배치합니다. */}
       <Form flexDirection="column">
         <TextField
+          type="text"
           value={form.authCode}
           onChange={(value: string) => setForm({ ...form, authCode: value })}
           placeholder="인증 코드 입력"

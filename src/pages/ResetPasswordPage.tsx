@@ -50,6 +50,7 @@ const ResetPasswordPage: React.FC = () => {
       {/* 이메일을 입력 할 수 있는 Input Form과 다음(next) Button을 배치합니다. */}
       <Form flexDirection="column">
         <TextField
+          type="email"
           value={form.email}
           onChange={(value: string) => setForm({ ...form, email: value })}
           placeholder="이메일 입력"

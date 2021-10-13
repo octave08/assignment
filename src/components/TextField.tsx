@@ -10,11 +10,7 @@ const Input = styled.input`
 `;
 
 interface Props
-  extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    "value" | "onChange" | "type"
-  > {
-  type?: "text";
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> {
   value: string;
   onChange: (value: string) => void;
 }
