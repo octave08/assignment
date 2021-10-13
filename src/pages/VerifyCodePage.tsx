@@ -8,14 +8,7 @@ import { useRecoilValue } from "recoil";
 
 import { remainTimeState } from "states";
 
-import {
-  Button,
-  TextField,
-  Typography,
-  Margin,
-  Layout,
-  Flex,
-} from "components";
+import { Button, TextField, Typography, Margin, Layout } from "components";
 import { useResetPassword } from "hooks";
 import suite from "utils/suite";
 
