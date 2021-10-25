@@ -38,6 +38,7 @@ const ChangePasswordPage: React.FC = () => {
     if (success) {
       // 호출에 성공하면 메시지로 알립니다.
       alert("성공적으로 비밀번호가 변경되었습니다");
+      history.push("/");
     }
   };
 
@@ -68,10 +69,6 @@ const ChangePasswordPage: React.FC = () => {
         <Margin marginTop={16} />
         <Button type="submit">변경하기</Button>
       </Form>
-      <Margin marginTop={2} />
-      <Button type="button" onClick={() => history.push("/")}>
-        로그인으로 이동
-      </Button>
     </Layout>
   );
 };
