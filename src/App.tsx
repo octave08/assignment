@@ -1,4 +1,5 @@
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route, Redirect, RouteProps } from "react-router-dom";
 
 import {
   LoginPage,
@@ -8,6 +9,18 @@ import {
   MyInfoPage,
   PageNotFound,
 } from "pages";
+
+import { useAuth } from "hooks";
+
+function PrivateRoute({ children, ...rest }: RouteProps) {
+  const { accessToken } = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={() => (accessToken ? children : <Redirect to="/" />)}
+    />
+  );
+}
 
 const App: React.FC = () => {
   return (
@@ -25,9 +38,9 @@ const App: React.FC = () => {
         <Route exact path="/reset-password/change-password">
           <ChangePasswordPage />
         </Route>
-        <Route exact path="/my-info">
+        <PrivateRoute exact path="/my-info">
           <MyInfoPage />
-        </Route>
+        </PrivateRoute>
         <Route component={PageNotFound} />
       </Switch>
     </main>
