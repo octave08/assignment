@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
@@ -11,7 +11,7 @@ import {
   Form,
 } from "components";
 import { useAuth } from "hooks";
-import suite from "utils/suite";
+import { createSuite } from "utils/suite";
 
 // 로그인 페이지(as B)
 const LoginPage: React.FC = () => {
@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
     email: "",
     password: "",
   });
-  const res = suite(form, _.keys(form));
+  const res = createSuite("login_form", form);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -11,7 +11,7 @@ import {
   Form,
 } from "components";
 import { useResetPassword } from "hooks";
-import suite from "utils/suite";
+import { createSuite } from "utils/suite";
 
 // 비밀번호 변경 페이지
 const ChangePasswordPage: React.FC = () => {
@@ -21,7 +21,7 @@ const ChangePasswordPage: React.FC = () => {
     newPassword: "",
     newPasswordConfirm: "",
   });
-  const res = suite(form, _.keys(form));
+  const res = createSuite("change_password_form", form);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

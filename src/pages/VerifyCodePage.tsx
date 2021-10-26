@@ -15,7 +15,7 @@ import {
   Form,
 } from "components";
 import { useResetPassword, useInterval } from "hooks";
-import suite from "utils/suite";
+import { createSuite } from "utils/suite";
 
 // 인증 코드 검증 페이지
 const VerifyCodePage: React.FC = () => {
@@ -28,7 +28,7 @@ const VerifyCodePage: React.FC = () => {
   const [form, setForm] = useState({
     authCode: "",
   });
-  const res = suite(form, _.keys(form));
+  const res = createSuite("verify_code_form", form);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
