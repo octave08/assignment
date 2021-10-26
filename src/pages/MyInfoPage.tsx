@@ -78,8 +78,11 @@ const MyInfoPage: React.FC = () => {
       </Card>
       <Margin marginTop={16} />
       {/* 로그아웃 Button을 배치합니다. */}
-
-      <Button onClick={handleClick} data-cy="logoutButton">
+      <Button
+        onClick={handleClick}
+        data-cy="logoutButton"
+        style={{ width: "100%" }}
+      >
         로그아웃
       </Button>
     </Layout>
