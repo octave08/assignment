@@ -14,7 +14,7 @@ import {
   Layout,
   Form,
 } from "components";
-import { useResetPassword } from "hooks";
+import { useResetPassword, useInterval } from "hooks";
 import suite from "utils/suite";
 
 // 인증 코드 검증 페이지
@@ -24,6 +24,7 @@ const VerifyCodePage: React.FC = () => {
   const remainTime = useRecoilValue(remainTimeState);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [isCounting, setCounting] = useState(false);
   const [form, setForm] = useState({
     authCode: "",
   });
@@ -55,25 +56,26 @@ const VerifyCodePage: React.FC = () => {
 
     setMinutes(_.toInteger(remainMillisecond / 1000 / 60));
     setSeconds(_.toInteger((remainMillisecond / 1000) % 60));
+    setCounting(true);
   }, [remainTime]);
 
-  useEffect(() => {
-    const countDown = setInterval(() => {
+  useInterval(
+    () => {
       if (seconds > 0) {
         setSeconds(seconds - 1);
       }
 
       if (seconds === 0) {
         if (minutes === 0) {
-          clearInterval(countDown);
+          setCounting(false);
         } else {
           setMinutes(minutes - 1);
           setSeconds(59);
         }
       }
-    }, 1000);
-    return () => clearInterval(countDown);
-  }, [minutes, seconds]);
+    },
+    isCounting ? 1000 : null
+  );
 
   return (
     <Layout>
